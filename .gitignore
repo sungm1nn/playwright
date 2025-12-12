@@ -1,5 +1,7 @@
 playwright/venv/
-__pycache__/
-*.log
-*.pyc
-.env
+playwright/sessions/
+
+#__pycache__/
+#*.log
+#*.pyc
+#.env
