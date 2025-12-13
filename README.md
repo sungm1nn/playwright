@@ -96,4 +96,6 @@ Actions에서 go to log-in page로 가면 pass.yml, button test로 가면 test_h
 
 ## Slack 알람
 테스트 성공/실패 여부만 전송, 테스트 실패 여부에 대한 자세한 사항은 값을 전달받을 수 있는 쿼리 혹은 input 정보가 있으면 더 자세하게 전송 가능할 수도...
+secret에 slack webhook url 설정하여, 알람 내용을 받으려면 따로 webhook url 설정이 필요함
 
+<img width="328" height="226" alt="image" src="https://github.com/user-attachments/assets/d880ab29-5651-4886-a408-c030cde2ed9f" />
