@@ -1,0 +1,77 @@
+name: Playwright Pytest CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+
+    steps:
+      # 소스 코드 체크아웃
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Python 3.12로 세팅 (로컬과 동일)
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 가상환경 생성 및 의존성 파일 설치
+      - name: Set up virtual environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # playwright 브라우저 설치
+      - name: Install Playwright browsers
+        run: |
+          source venv/bin/activate
+          playwright install chromium
+
+      # pytest 실행, HTML 리포트 생성
+      - name: Run pytest with HTML report
+        run: |
+          source venv/bin/activate
+          python -m pytest tests/main_page.py --html=report.html --self-contained-html
+
+      # HTML 리포트를 GitHub Actions Artifacts로 업로드
+      - name: Upload HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-html-report
+          path: report.html
+
+      # Slack으로 테스트 결과 알림 전송 (상세 결과에 대해선 알려줄 수 없음)
+      - name: Notify Slack
+        if: always()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          JOB_STATUS: ${{ job.status }}
+        # url 세팅이 안되어 있거나 잘못되어 있으면 끝
+        run: |
+          if [ -z "$SLACK_WEBHOOK_URL" ]; then
+            echo "need setting url."
+            exit 0
+          fi
+
+          if [ "$JOB_STATUS" = "success" ]; then
+            STATUS_EMOJI="😀"
+            STATUS_TEXT="테스트 성공"
+          else
+            STATUS_EMOJI="❌"
+            STATUS_TEXT="테스트 실패"
+          fi
+
+          curl -X POST -H 'Content-type: application/json' \
+          --data "{
+            \"text\": \"$STATUS_EMOJI Playwright 자동화 테스트 결과\n- 상태: $STATUS_TEXT\n- Repository: ${{ github.repository }}\n- Branch: ${{ github.ref_name }}\"
+          }" \
+          $SLACK_WEBHOOK_URL
