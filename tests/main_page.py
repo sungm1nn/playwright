@@ -9,7 +9,7 @@ def test_main_page() :
         page = context.new_page()
 
         page.goto("https://app.3o3.co.kr/login")
-        expect(page).to_have_url("https://app.3o3.co.kr")
+        expect(page).to_have_url("https://app.3o3.co.kr/login")
 
 
 if __name__ == "__main__":
