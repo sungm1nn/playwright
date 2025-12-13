@@ -2,7 +2,7 @@ from playwright.sync_api import sync_playwright, expect
 from time import sleep
 import re
 
-def test_hamburger_button() :
+def test_main_page() :
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
         context = browser.new_context()
@@ -13,4 +13,4 @@ def test_hamburger_button() :
 
 
 if __name__ == "__main__":
-    test_hamburger_button()
+    test_main_page()
