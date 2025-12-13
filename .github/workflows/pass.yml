@@ -49,7 +49,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: pytest-html-report
-          path: pytest-html-report
+          path: report_login_page.html
 
       # Slack으로 테스트 결과 알림 전송 (상세 결과에 대해선 알려줄 수 없음)
       - name: Notify Slack
