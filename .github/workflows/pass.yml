@@ -64,10 +64,10 @@ jobs:
 
           if [ "$JOB_STATUS" = "success" ]; then
             STATUS_EMOJI="😀"
-            STATUS_TEXT="테스트 성공"
+            STATUS_TEXT="로그인 페이지 접근 테스트 성공"
           else
             STATUS_EMOJI="❌"
-            STATUS_TEXT="테스트 실패"
+            STATUS_TEXT="로그인 페이지 접근 테스트 실패"
           fi
 
           curl -X POST -H 'Content-type: application/json' \
