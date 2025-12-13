@@ -40,7 +40,7 @@ jobs:
       - name: Run pytest with HTML report
         run: |
           source venv/bin/activate
-          python -m pytest tests/main_page.py --html=report.html --self-contained-html
+          python -m pytest tests/main_page.py --html=report_login_page.html --self-contained-html
 
       # HTML 리포트를 GitHub Actions Artifacts로 업로드
       - name: Upload HTML report
