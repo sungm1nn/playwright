@@ -1,4 +1,4 @@
-name: Playwright Pytest CI
+name: button test
 
 on:
   push:
@@ -40,7 +40,7 @@ jobs:
       - name: Run pytest with HTML report
         run: |
           source venv/bin/activate
-          python -m pytest tests/test_h_button.py --html=report.html --self-contained-html
+          python -m pytest tests/test_h_button.py --html=report_button_test.html --self-contained-html
 
       # HTML 리포트를 GitHub Actions Artifacts로 업로드
       - name: Upload HTML report
