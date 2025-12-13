@@ -34,7 +34,7 @@ jobs:
       - name: Install Playwright browsers
         run: |
           source venv/bin/activate
-          playwright install chromium
+          playwright install --with-deps chromium
 
       # pytest 실행, HTML 리포트 생성
       - name: Run pytest with HTML report
