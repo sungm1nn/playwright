@@ -39,7 +39,7 @@ $ source venv/bin/activate
 $ pip install --upgrade pip
 $ pip install pytest pytest-playwright
 $ playwright install
-
+$ pip install pytest-html
 
 # Ubuntu 24.04 에서 playwright 부족한 패키지 설치 (위에서 node-playwright 없다고 나왔을 시에 수행)
 $ playwright install-deps
