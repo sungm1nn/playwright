@@ -11,7 +11,8 @@ def test_hamburger_button() :
         page.goto("https://app.3o3.co.kr/login")
         page.get_by_role("button", name="카카오 계정으로 계속하기").click()
         # 수동 로그인, 자동화 시 보안 문제있을 수 있음, 로그인 제한 시간 5분, OAuth 문제인지 세션 유지가 안돼 매번 로그인 해야 함
-        page.wait_for_url("https://app.3o3.co.kr/payment/not-target/normal",timeout=300_000)
+        # CI 환경에서는 5분 대기가 필요없기 때문에(확정적으로 실패, 수동 로그인이 수행될 수 없기 때문), timeout 5초
+        page.wait_for_url("https://app.3o3.co.kr/payment/not-target/normal",timeout=5_000)
         #햄버거 버튼 클릭
         page.get_by_role("button").filter(has_text=re.compile(r"^$")).click()
         page.locator("div").filter(has_text="소득 리포트").nth(3).click()
