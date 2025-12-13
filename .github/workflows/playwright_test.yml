@@ -35,7 +35,7 @@ jobs:
         run: |
           source venv/bin/activate
           playwright install --with-deps chromium
-          rm -r report_button_test.html
+          rm -f report_button_test.html
 
       # pytest 실행, HTML 리포트 생성
       - name: Run pytest with HTML report
