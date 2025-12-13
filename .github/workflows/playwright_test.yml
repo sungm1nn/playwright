@@ -39,7 +39,7 @@ jobs:
       - name: Run pytest with HTML report
         run: |
           source venv/bin/activate
-          python -m pytest tests/ --html=report.html --self-contained-html
+          python -m pytest tests/test_h_button.py --html=report.html --self-contained-html
 
       # HTML 리포트를 GitHub Actions Artifacts로 업로드
       - name: Upload HTML report
@@ -63,7 +63,7 @@ jobs:
           fi
 
           if [ "$JOB_STATUS" = "success" ]; then
-            STATUS_EMOJI="✅"
+            STATUS_EMOJI="😀"
             STATUS_TEXT="테스트 성공"
           else
             STATUS_EMOJI="❌"
