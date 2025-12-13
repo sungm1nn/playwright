@@ -64,10 +64,10 @@ jobs:
 
           if [ "$JOB_STATUS" = "success" ]; then
             STATUS_EMOJI="😀"
-            STATUS_TEXT="테스트 성공"
+            STATUS_TEXT="수동 로그인 후 햄버거 버튼 테스트 성공"
           else
             STATUS_EMOJI="❌"
-            STATUS_TEXT="테스트 실패"
+            STATUS_TEXT="햄버거 버튼 테스트 실패"
           fi
 
           if [ "$CI" = "true" ]; then
