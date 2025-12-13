@@ -40,6 +40,7 @@ jobs:
       - name: Run pytest with HTML report
         run: |
           source venv/bin/activate
+          rm -f report_login_page.html
           python -m pytest tests/main_page.py --html=report_login_page.html --self-contained-html
 
       # HTML 리포트를 GitHub Actions Artifacts로 업로드
@@ -48,7 +49,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: pytest-html-report
-          path: report.html
+          path: pytest-html-report
 
       # Slack으로 테스트 결과 알림 전송 (상세 결과에 대해선 알려줄 수 없음)
       - name: Notify Slack
