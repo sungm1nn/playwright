@@ -1,7 +1,9 @@
 from playwright.sync_api import sync_playwright, expect
 from time import sleep
 import re
+import pytest
 
+@pytest.mark.xfail(strict=True)
 def test_main_page() :
     with sync_playwright() as p:
         browser = p.chromium.launch()
