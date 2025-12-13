@@ -35,6 +35,7 @@ jobs:
         run: |
           source venv/bin/activate
           playwright install --with-deps chromium
+          rm -r report_button_test.html
 
       # pytest 실행, HTML 리포트 생성
       - name: Run pytest with HTML report
@@ -48,7 +49,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: pytest-html-report
-          path: report.html
+          path: report_button_test.html
 
       # Slack으로 테스트 결과 알림 전송 (상세 결과에 대해선 알려줄 수 없음)
       - name: Notify Slack
