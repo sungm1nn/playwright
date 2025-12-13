@@ -80,3 +80,20 @@ python -m pytest tests/main_page_headless_false.py --html=report.html --self-con
 python -m pytest tests/test_h_button_headless_false.py --html=report.html --self-contained-html
 ```
 
+## Git Acitons 설명
+```bash
+.github/workflows/
+├── pass.yml
+└── playwright_test.yml
+```
+
+pass.yml 은 main_page.py, playwright_test.yml 은 test_h_button.py 에 대한 CI 설정을 포함
+
+Actions에서 go to log-in page로 가면 pass.yml, button test로 가면 test_h_button.py 의 이력을 확인 가능
+각 workflow에서 수동 실행 가능하며, Artifacts에서 html을 확인할 수 있음
+
+---
+
+## Slack 알람
+테스트 성공/실패 여부만 전송, 테스트 실패 여부에 대한 자세한 사항은 값을 전달받을 수 있는 쿼리 혹은 input 정보가 있으면 더 자세하게 전송 가능할 수도...
+
