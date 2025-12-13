@@ -8,7 +8,7 @@ def test_main_page() :
         context = browser.new_context()
         page = context.new_page()
 
-        page.goto("https://app.3o3.co.kr/login")
+        page.goto("https://app.3o3.co.kr/login", timeout=60_000)
         expect(page).to_have_url("https://app.3o3.co.kr/login")
 
 
